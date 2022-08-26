@@ -17,25 +17,25 @@ namespace Supermarket
 
     class Supermarket
     {
-        private Queue<Bayer> _bayers = new Queue<Bayer>();
+        private Queue<Buyer> _buyers = new Queue<Buyer>();
         private int _money = 0;
 
         public Supermarket(int bayersCount)
         {
             for (int i = 0; i < bayersCount; i++)
             {
-                _bayers.Enqueue(new Bayer());
+                _buyers.Enqueue(new Buyer());
             }
         }
 
         public void Work()
         {
-            while (_bayers.Count > 0)
+            while (_buyers.Count > 0)
             {
                 ShowMoney();
-                Bayer bayer = _bayers.Dequeue();
-                bayer.ShowInfo();
-                _money += bayer.CheckSolvensy();
+                Buyer buyer = _buyers.Dequeue();
+                buyer.ShowInfo();
+                _money += buyer.CheckSolvensy();
                 Console.ReadKey(true);
             }
         }
@@ -47,7 +47,7 @@ namespace Supermarket
         }
     }
 
-    class Bayer
+    class Buyer
     {
         private static Random _random = new Random();
         private Basket _basket;
@@ -57,7 +57,7 @@ namespace Supermarket
         private int _minProductsCount = 10;
         private int _maxProductsCount = 20;
 
-        public Bayer()
+        public Buyer()
         {
             _basket = new Basket(_minProductsCount, _maxProductsCount);
             _money = _random.Next(_minMoney, _maxMoney);
